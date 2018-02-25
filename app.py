@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import warnings
 
 with warnings.catch_warnings():
@@ -11,13 +13,16 @@ import mongo_story_list as story_list
 @get('/story-list')
 def get_story_list():
     stories = story_list.get_stories()
+    for story in stories:
+        book = story['book']
+        theme = story['theme']
     output = template('story_list.tpl', stories=stories)
     return output
 
 @post('/new-story')
 def post_new_story():
-    book = request.forms.get('book')
-    theme = request.forms.get('theme')
+    book = request.forms.book
+    theme = request.forms.theme
     story_list.save_story(book, theme)
     redirect('/')
 
@@ -51,11 +56,11 @@ def server_static(filepath):
     return static_file(filepath, root='./static')
 
 def setup():
-    story_list.save_story('book1', 'theme1')
+    story_list.save_story('book1', '中文')
     story_list.save_story('book2', 'theme2')
     story_list.save_story('book3', 'theme3')
     story_list.save_story('book4', 'theme4')
 
-#setup()
+setup()
 debug(True)
-run(host='0.0.0.0', port=8088, reloader=True)
+run(host='localhost', port=8088, reloader=True)
