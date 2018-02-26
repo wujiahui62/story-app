@@ -46,8 +46,8 @@ def get_edited_story(id):
 
 @post('/edit-story/<id>')
 def post_edited_story(id):
-    book = request.forms.get('new_book')
-    theme = request.forms.get('new_theme')
+    book = request.forms.get_new_book
+    theme = request.forms.get_new_theme
     story_list.update_story(id, book, theme)
     redirect('/')
 
