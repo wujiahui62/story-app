@@ -23,10 +23,15 @@ def get_story(story_id):
     return story
 
 def get_story_by_key(key):
-    stories = list(current_stories.find({"book":key})) + list(current_stories.find({"theme":key}))
-    for story in stories:
+    # remove duplicates
+    stories = list(current_stories.find({"book":{'$regex':key}})) + list(current_stories.find({"theme":{'$regex':key}}))
+    stories_no_repeat = []
+    for i in range(len(stories)):
+        if stories[i] not in stories[i+1:]:
+            stories_no_repeat.append(stories[i])
+    for story in stories_no_repeat:
         story['_id'] = str(story['_id'])
-    return stories
+    return stories_no_repeat
 
 def save_story(book, theme):
     story = {"book": book, "theme": theme}

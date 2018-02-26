@@ -61,6 +61,6 @@ def setup():
     story_list.save_story('book3', 'theme3')
     story_list.save_story('book4', 'theme4')
 
-setup()
+#setup()
 debug(True)
 run(host='0.0.0.0', port=8088, reloader=True)
