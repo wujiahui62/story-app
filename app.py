@@ -46,8 +46,8 @@ def get_edited_story(id):
 
 @post('/edit-story/<id>')
 def post_edited_story(id):
-    book = request.forms.get_new_book
-    theme = request.forms.get_new_theme
+    book = request.forms.new_book
+    theme = request.forms.new_theme
     story_list.update_story(id, book, theme)
     redirect('/')
 
@@ -63,4 +63,4 @@ def setup():
 
 #setup()
 debug(True)
-run(host='0.0.0.0', port=8088, reloader=True)
+run(host='localhost', port=8088, reloader=True)
