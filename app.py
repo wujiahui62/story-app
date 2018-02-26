@@ -63,4 +63,4 @@ def setup():
 
 #setup()
 debug(True)
-run(host='localhost', port=8088, reloader=True)
+run(host='0.0.0.0', port=8088, reloader=True)
