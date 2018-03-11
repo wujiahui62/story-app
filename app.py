@@ -63,5 +63,6 @@ def setup():
     story_list.save_story('book4', 'theme4')
 
 #setup()
-debug(True)
-run(host='localhost', port=8080, reloader=True)
+#debug(True)
+#run(host='localhost', port=8080, reloader=True)
+application = default_app()
