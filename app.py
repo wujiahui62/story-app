@@ -7,7 +7,8 @@ with warnings.catch_warnings():
     from bottle import get, post, run, debug, default_app, request, template, static_file, redirect
 
 #import mock_story_list as story_list
-import mongo_story_list as story_list
+#import mongo_story_list as story_list
+import sqlite_story_list as story_list
 
 @get('/')
 @get('/story-list')
@@ -63,4 +64,4 @@ def setup():
 
 #setup()
 debug(True)
-run(host='0.0.0.0', port=8088, reloader=True)
+run(host='localhost', port=8080, reloader=True)

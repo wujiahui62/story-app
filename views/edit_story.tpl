@@ -23,7 +23,10 @@
           <input type="image" src="/static/save-task.png"/>
         </div>
       </td>
-        </form>
+      </form>
     </tr>
   </table>
+
+<p id="button">Add more books</p>
 </body>
+<script src="addMoreRow.js"  type="text/javascript"></script>

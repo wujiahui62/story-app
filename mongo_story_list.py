@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 import pymongo
+import private
 
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-client = MongoClient("mongodb://storydb:password@ds147228.mlab.com:47228/storydb")
+connection_string = "mongodb://{u}:{p}@ds147228.mlab.com:47228/storydb"
+#client = MongoClient("mongodb://storydb:password@ds147228.mlab.com:47228/storydb")
+client = MongoClient(connection_string.format(u=private.mongo_user, p=private.mongo_password, connect=False))
+
 
 db = client.storydb
 current_stories = db.current_stories
