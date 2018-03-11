@@ -1,5 +1,5 @@
 var page = require('webpage').create()
-page.open(url, function(status) {
+page.open("http://chinesestory.pythonanywhere.com", function(status) {
     if(status != "success") {
         console.log('Fail to load the address');
     } else {
