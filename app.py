@@ -36,8 +36,9 @@ def get_discard_story(id):
 def get_search_results():
     key = request.POST.key.strip()
     stories = story_list.get_story_by_key(key)
-    output = template('story_list.tpl', stories=stories)
-    return output
+    if stories == key:
+        return template('not_found.tpl', key=key)
+    return template('story_list.tpl', stories=stories)
 
 @get('/edit-story/<id>')
 def get_edited_story(id):
@@ -64,5 +65,5 @@ def setup():
 
 #setup()
 #debug(True)
-#run(host='localhost', port=8080, reloader=True)
-application = default_app()
+run(host='localhost', port=8080, reloader=True)
+#application = default_app()

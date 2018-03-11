@@ -24,7 +24,7 @@ def get_story_by_key(key):
     items = [{'_id': str(i), 'book': b, 'theme':t} for (i, b, t) in cursor.fetchall()]
     if(len(items) > 0):
         return items
-    return None
+    return key
 
 def save_story(book, theme):
     cursor = connection.cursor()
