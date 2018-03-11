@@ -20,7 +20,7 @@ def get_story(story_id):
 
 def get_story_by_key(key):
     cursor = connection.cursor()
-    cursor.execute("SELECT rowid, book, theme from Stories WHERE book LIKE " + key)
+    cursor.execute("SELECT rowid, book, theme from Stories WHERE book like ? or theme like ?", ('%'+key+'%', '%'+key+'%'))
     items = [{'_id': str(i), 'book': b, 'theme':t} for (i, b, t) in cursor.fetchall()]
     if(len(items) > 0):
         return items
