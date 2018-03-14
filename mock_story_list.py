@@ -21,13 +21,13 @@ def get_story_by_key(key):
     return stories
 
 
-def save_story(book, theme):
+def save_story(theme, book):
     global current_id
     current_id += 1
     story_id = str(current_id)
     story = {'_id': story_id,
-            'book': book,
-            'theme': theme
+            'theme': theme,
+            'book': book
     }
     current_stories.append(story)
     return story_id
@@ -36,7 +36,7 @@ def delete_story(story_id):
     global current_stories
     current_stories = [ story for story in current_stories if story['_id'] != story_id]
 
-def update_story(story_id, book=None, theme=None):
+def update_story(story_id, theme=None, book=None):
     for story in current_stories:
         if story['_id'] == story_id:
             if book:

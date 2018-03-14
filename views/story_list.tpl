@@ -31,12 +31,12 @@
     <tr>
       <td>
         <div class="w3-card-4 w3-padding">
-          <input autofocus type="text" name="book" placeholder="New book..." style="min-width: 400px">
+          <input autofocus type="text" name="theme" placeholder="New theme..." style="min-width: 400px">
         </div>
       </td>
       <td>
         <div class="w3-card-4 w3-padding">
-          <input autofocus type="text" name="theme" placeholder="New theme..." style="min-width: 400px">
+          <input autofocus type="text" name="book" placeholder="New book..." style="min-width: 400px">
         </div>
       </td>
       <td>
@@ -48,10 +48,10 @@
     %for story in stories:
       <tr>
         <td>
-          <div class="w3-card-4 w3-padding">{{story['book']}}</div>
+          <div class="w3-card-4 w3-padding">{{story['theme']}}</div>
         </td>
         <td>
-          <div class="w3-card-4 w3-padding">{{story['theme']}}</div>
+          <div class="w3-card-4 w3-padding">{{story['book']}}</div>
         </td>
         <td>
           <div class="w3-padding w3-center">

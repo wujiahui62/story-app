@@ -37,8 +37,8 @@ def get_story_by_key(key):
         story['_id'] = str(story['_id'])
     return stories_no_repeat
 
-def save_story(book, theme):
-    story = {"book": book, "theme": theme}
+def save_story(theme, book):
+    story = {"theme": theme, "book": book}
     story_id = current_stories.insert_one(story).inserted_id
     return str(story_id)
 
@@ -47,7 +47,7 @@ def delete_story(story_id):
     print(object_id)
     stories = current_stories.delete_one({'_id':object_id})
 
-def update_story(story_id, book=None, theme=None):
+def update_story(story_id, theme=None, book=None):
     if book:
         update = {'$set':{'book':book}}
         object_id = ObjectId(story_id)

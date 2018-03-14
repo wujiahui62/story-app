@@ -22,9 +22,9 @@ def get_story_list():
 
 @post('/new-story')
 def post_new_story():
-    book = request.forms.book
     theme = request.forms.theme
-    story_list.save_story(book, theme)
+    book = request.forms.book
+    story_list.save_story(theme, book)
     redirect('/')
 
 @get('/discard-story/<id>')
@@ -48,9 +48,9 @@ def get_edited_story(id):
 
 @post('/edit-story/<id>')
 def post_edited_story(id):
-    book = request.forms.new_book
     theme = request.forms.new_theme
-    story_list.update_story(id, book, theme)
+    book = request.forms.new_book
+    story_list.update_story(id, theme, book)
     redirect('/')
 
 @get('/static/<filepath:path>')
@@ -65,5 +65,5 @@ def setup():
 
 #setup()
 #debug(True)
-run(host='localhost', port=8080, reloader=True)
-#application = default_app()
+#run(host='localhost', port=8080, reloader=True)
+application = default_app()

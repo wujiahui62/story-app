@@ -5,14 +5,14 @@ connection = sqlite3.connect('story.db')
 
 def get_stories():
     cursor = connection.cursor()
-    cursor.execute("SELECT rowid, book, theme FROM Stories")
-    return [{'_id':str(i), 'book':b, 'theme':t} for (i, b, t) in cursor.fetchall()]
+    cursor.execute("SELECT rowid, theme, book FROM Stories")
+    return [{'_id':str(i), 'theme':b, 'book':t} for (i, b, t) in cursor.fetchall()]
 
 
 def get_story(story_id):
     cursor = connection.cursor()
-    cursor.execute("SELECT rowid, book, theme FROM Stories WHERE rowid = " + story_id)
-    items = [{'_id': str(i), 'book': b, 'theme':t} for (i, b, t) in cursor.fetchall()]
+    cursor.execute("SELECT rowid, theme, book FROM Stories WHERE rowid = " + story_id)
+    items = [{'_id': str(i), 'theme': b, 'book':t} for (i, b, t) in cursor.fetchall()]
     if len(items) == 1:
         item = items[0]
         return item
@@ -20,15 +20,15 @@ def get_story(story_id):
 
 def get_story_by_key(key):
     cursor = connection.cursor()
-    cursor.execute("SELECT rowid, book, theme from Stories WHERE book like ? or theme like ?", ('%'+key+'%', '%'+key+'%'))
-    items = [{'_id': str(i), 'book': b, 'theme':t} for (i, b, t) in cursor.fetchall()]
+    cursor.execute("SELECT rowid, theme, book from Stories WHERE book like ? or theme like ?", ('%'+key+'%', '%'+key+'%'))
+    items = [{'_id': str(i), 'theme': b, 'book':t} for (i, b, t) in cursor.fetchall()]
     if(len(items) > 0):
         return items
     return key
 
-def save_story(book, theme):
+def save_story(theme, book):
     cursor = connection.cursor()
-    inserted = (book, theme)
+    inserted = (theme, book)
     cursor.execute('INSERT INTO Stories VALUES(?, ?)', inserted)
     lastrowid = cursor.lastrowid
     connection.commit()
@@ -39,7 +39,7 @@ def delete_story(story_id):
     cursor.execute("DELETE FROM Stories where rowid = " + story_id)
     connection.commit()
 
-def update_story(story_id, book=None, theme=None):
+def update_story(story_id, theme=None, book=None):
     cursor = connection.cursor()
     if book:
         cursor.execute("UPDATE Stories SET book = ? WHERE rowid = " + story_id, (book,))
