@@ -5,4 +5,4 @@ User can add, retrieve, search, delete and update data
 
 More features to be added
 
-[Click here to use the app](https://www.chinesestory.pythonanywhere.com)
+[Click here to use the app](https://chinesestory.pythonanywhere.com)
